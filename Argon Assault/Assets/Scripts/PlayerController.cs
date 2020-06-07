@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Speed in m/s")] [SerializeField] float ControlSpeed = 30f;
     [Tooltip("Distance in m")] [SerializeField] float clampRangeX= 16f;
     [Tooltip("Distance in m")] [SerializeField] float clampRangeY = 9f;
+    [SerializeField] GameObject[] guns;
 
     [Header("Screen-poisition Based")]
     [SerializeField] float positionPitchFactor = -1.6f;
@@ -27,7 +28,9 @@ public class PlayerController : MonoBehaviour
         {
             ProcessTranslation();
             ProcessRotation();
+            ProcessFiring();
         }
+        else SetGunsActive(false);
     }
 
     private void ProcessRotation()
@@ -51,6 +54,32 @@ public class PlayerController : MonoBehaviour
         float newYPos = Mathf.Clamp(transform.localPosition.y + yOffset, -clampRangeY, clampRangeY);
 
         transform.localPosition = new Vector3(newXPos, newYPos, transform.localPosition.z);
+    }
+
+    private void ProcessFiring()
+    {
+        if (Input.GetAxis("Fire1") == 1)
+        {
+                SetGunsActive(true);
+        }
+        else
+        {
+            SetGunsActive(false);
+        }
+    }
+
+    private void SetGunsActive(bool isActive)
+    {
+        foreach (GameObject gun in guns)
+        {
+            // emission on/off
+            var emissionModule = gun.GetComponent<ParticleSystem>().emission;
+            emissionModule.enabled = isActive;
+
+            // audio on/off
+            AudioSource SFX = gun.GetComponent<AudioSource>();
+            SFX.enabled = isActive;
+        }
     }
 
     public bool ChangeAliveState()

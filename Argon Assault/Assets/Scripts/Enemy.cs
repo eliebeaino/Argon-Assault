@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     [Header("Score System)")]
     ScoreBoard scoreBoard;
     [SerializeField] int scorePerHit = 100;
+    [SerializeField] int health = 300;
+    [SerializeField] int damagePerHit = 100;
 
 
     // Start is called before the first frame update
@@ -27,13 +29,28 @@ public class Enemy : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+        ProcessHit();
+
+        if (health <= 0)
+        {
+            KillEnemy();
+        }
+    }
+
+    private void ProcessHit()
+    {
+        // Add Score & reduce health
+        scoreBoard.AddScore(scorePerHit);
+        health = health - damagePerHit;
+
+        // todo add hit fx
+    }
+
+    private void KillEnemy()
+    {
         // spawn death FX
         GameObject fx = Instantiate(DeathFX, transform.position, Quaternion.identity);
         fx.transform.parent = parentObj;
-
-        // Add Score
-        scoreBoard.AddScore(scorePerHit);
-
         // Destory Enemy
         Destroy(gameObject);
     }

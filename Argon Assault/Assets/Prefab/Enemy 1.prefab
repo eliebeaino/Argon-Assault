@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6924481280847733670}
   - component: {fileID: 6932411517223944712}
   - component: {fileID: 1148925577}
+  - component: {fileID: 1388590070}
+  - component: {fileID: 1388590069}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Untagged
@@ -94,3 +96,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathFX: {fileID: 6357892541063121195, guid: b70faa46f757ed34ba232b5874df7497, type: 3}
   parentObj: {fileID: 0}
+  scorePerHit: 100
+  health: 300
+  damagePerHit: 100
+--- !u!320 &1388590070
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6946434219943460810}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: ae47593015e9dc748a6a3f9ee4594e31, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -4544755987675016059, guid: ae47593015e9dc748a6a3f9ee4594e31, type: 2}
+    value: {fileID: 1388590069}
+  m_ExposedReferences:
+    m_References: []
+--- !u!95 &1388590069
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6946434219943460810}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
